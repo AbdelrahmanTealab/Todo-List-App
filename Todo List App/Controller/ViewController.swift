@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var listTableView: UITableView!
-    
+
     var lists:[List] = [
         List(title: "Grocery", dueDate: Date(), items: ["banana","apple","orange"]),
         List(title: "Games", dueDate: Date(), items: ["Red Dead","Cyberpunk","Tekken"]),
@@ -21,7 +21,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        listTableView.dataSource=self
         // Do any additional setup after loading the view.
+    }
+}
+
+extension ViewController:UITableViewDataSource{
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return lists.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+        cell.textLabel?.text = lists[indexPath.row].title
+        cell.detailTextLabel?.text = lists[indexPath.row].dueDate?.description(with: Locale(identifier: "en_US"))
+        return cell
     }
 }
 
