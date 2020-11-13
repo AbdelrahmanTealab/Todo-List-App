@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         listTableView.dataSource=self
+        listTableView.delegate=self
         // Do any additional setup after loading the view.
     }
 }
@@ -36,6 +37,12 @@ extension ViewController:UITableViewDataSource{
         cell.textLabel?.text = lists[indexPath.row].title
         cell.detailTextLabel?.text = lists[indexPath.row].dueDate?.description(with: Locale(identifier: "en_US"))
         return cell
+    }
+}
+
+extension ViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pri
     }
 }
 
