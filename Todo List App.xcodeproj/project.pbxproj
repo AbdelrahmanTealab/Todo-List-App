@@ -13,6 +13,8 @@
 		B6142CD9255E6BD300A8B949 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6142CD7255E6BD300A8B949 /* Main.storyboard */; };
 		B6142CDB255E6BD400A8B949 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6142CDA255E6BD400A8B949 /* Assets.xcassets */; };
 		B6142CDE255E6BD400A8B949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6142CDC255E6BD400A8B949 /* LaunchScreen.storyboard */; };
+		B6142CE8255E721600A8B949 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6142CE7255E721600A8B949 /* Constants.swift */; };
+		B6142CEB255E747100A8B949 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6142CEA255E747100A8B949 /* ListModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B6142CDA255E6BD400A8B949 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6142CDD255E6BD400A8B949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6142CDF255E6BD400A8B949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6142CE7255E721600A8B949 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B6142CEA255E747100A8B949 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,41 @@
 		B6142CD0255E6BD300A8B949 /* Todo List App */ = {
 			isa = PBXGroup;
 			children = (
+				B6142CF0255E74AA00A8B949 /* Controller */,
+				B6142CEF255E74A200A8B949 /* View */,
+				B6142CDA255E6BD400A8B949 /* Assets.xcassets */,
+				B6142CED255E748100A8B949 /* Model */,
+				B6142CE7255E721600A8B949 /* Constants.swift */,
 				B6142CD1255E6BD300A8B949 /* AppDelegate.swift */,
 				B6142CD3255E6BD300A8B949 /* SceneDelegate.swift */,
-				B6142CD5255E6BD300A8B949 /* ViewController.swift */,
-				B6142CD7255E6BD300A8B949 /* Main.storyboard */,
-				B6142CDA255E6BD400A8B949 /* Assets.xcassets */,
-				B6142CDC255E6BD400A8B949 /* LaunchScreen.storyboard */,
 				B6142CDF255E6BD400A8B949 /* Info.plist */,
 			);
 			path = "Todo List App";
+			sourceTree = "<group>";
+		};
+		B6142CED255E748100A8B949 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B6142CEA255E747100A8B949 /* ListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B6142CEF255E74A200A8B949 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B6142CDC255E6BD400A8B949 /* LaunchScreen.storyboard */,
+				B6142CD7255E6BD300A8B949 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B6142CF0255E74AA00A8B949 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B6142CD5255E6BD300A8B949 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +170,8 @@
 				B6142CD6255E6BD300A8B949 /* ViewController.swift in Sources */,
 				B6142CD2255E6BD300A8B949 /* AppDelegate.swift in Sources */,
 				B6142CD4255E6BD300A8B949 /* SceneDelegate.swift in Sources */,
+				B6142CE8255E721600A8B949 /* Constants.swift in Sources */,
+				B6142CEB255E747100A8B949 /* ListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
