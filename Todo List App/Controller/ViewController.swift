@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         listTableView.dataSource=self
         listTableView.delegate=self
+        
+        listTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         // Do any additional setup after loading the view.
     }
 }
@@ -33,16 +35,16 @@ extension ViewController:UITableViewDataSource{
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        cell.textLabel?.text = lists[indexPath.row].title
-        cell.detailTextLabel?.text = lists[indexPath.row].dueDate?.description(with: Locale(identifier: "en_US"))
+        let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! ListCell
+        cell.listTitle?.text = lists[indexPath.row].title
+        cell.listDate?.text = lists[indexPath.row].dueDate?.description(with: Locale(identifier: "en_US"))
         return cell
     }
 }
 
 extension ViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pri
+        print(tableView.cellForRow(at: indexPath)?.textLabel?.text)
     }
 }
 
