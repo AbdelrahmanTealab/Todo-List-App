@@ -17,6 +17,7 @@
 		B6142CEB255E747100A8B949 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6142CEA255E747100A8B949 /* ListModel.swift */; };
 		B6142CF525607B9900A8B949 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6142CF325607B9900A8B949 /* ListCell.swift */; };
 		B6142CF625607B9900A8B949 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6142CF425607B9900A8B949 /* ListCell.xib */; };
+		B6142CF92560B31B00A8B949 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6142CF82560B31B00A8B949 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B6142CEA255E747100A8B949 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		B6142CF325607B9900A8B949 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		B6142CF425607B9900A8B949 /* ListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
+		B6142CF82560B31B00A8B949 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				B6142CD5255E6BD300A8B949 /* ViewController.swift */,
+				B6142CF82560B31B00A8B949 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				B6142CD2255E6BD300A8B949 /* AppDelegate.swift in Sources */,
 				B6142CD4255E6BD300A8B949 /* SceneDelegate.swift in Sources */,
 				B6142CF525607B9900A8B949 /* ListCell.swift in Sources */,
+				B6142CF92560B31B00A8B949 /* DetailsViewController.swift in Sources */,
 				B6142CE8255E721600A8B949 /* Constants.swift in Sources */,
 				B6142CEB255E747100A8B949 /* ListModel.swift in Sources */,
 			);
