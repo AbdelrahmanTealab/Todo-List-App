@@ -3,10 +3,10 @@
 //  Todo List App
 //
 //  Created by Abdelrahman  Tealab on 2020-11-14.
-//
+//  Student ID: 301164103
 
 import UIKit
-
+// this protocol is to be able to press the button that is inside the cell and execute its function
 protocol ListCellDelegate:AnyObject{
     func completionSwitched()
     
@@ -24,9 +24,9 @@ class ListCell: UITableViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
+    //ibaction for the edit button and switch button for later
     @IBAction func completionSwitched(_ sender: UISwitch) {
         delegate?.completionSwitched()
     }
@@ -37,7 +37,6 @@ class ListCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }
