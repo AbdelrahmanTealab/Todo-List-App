@@ -38,8 +38,22 @@ extension ViewController:UITableViewDataSource{
         let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! ListCell
         cell.listTitle?.text = lists[indexPath.row].title
         cell.listDate?.text = lists[indexPath.row].dueDate?.description(with: Locale(identifier: "en_US"))
+        
+        cell.delegate = self
         return cell
     }
+    
+}
+
+extension ViewController:ListCellDelegate{
+    func completionSwitched() {
+    }
+    
+    func editPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: K.segueName, sender: self)
+    }
+    
+    
 }
 
 extension ViewController:UITableViewDelegate{
