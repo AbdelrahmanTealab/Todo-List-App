@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +25,8 @@
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34k-dg-YDk">
                                         <rect key="frame" x="238" y="12" width="51" height="31"/>
+                                        <color key="onTintColor" name="AccentColor"/>
+                                        <color key="thumbTintColor" name="Danger Color"/>
                                         <connections>
                                             <action selector="completionSwitched:" destination="KGk-i7-Jjw" eventType="valueChanged" id="eFn-S2-fJY"/>
                                         </connections>
@@ -34,13 +37,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3T7-xz-7BW">
                                                 <rect key="frame" x="0.0" y="0.0" width="146" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="Title Color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-Af-wmr">
                                                 <rect key="frame" x="0.0" y="24" width="146" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="Title Color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -66,6 +69,7 @@
                                     <constraint firstAttribute="height" constant="40" id="L9s-DL-twR"/>
                                     <constraint firstAttribute="width" constant="40" id="pkD-BW-0Gb"/>
                                 </constraints>
+                                <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" backgroundImage="square.and.pencil" catalog="system"/>
                                 <connections>
                                     <action selector="editPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Ww-je-LXc"/>
@@ -74,6 +78,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" name="Background Color"/>
                 <constraints>
                     <constraint firstItem="E8N-J6-Zie" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HMw-Pd-GZV"/>
                     <constraint firstAttribute="bottom" secondItem="E8N-J6-Zie" secondAttribute="bottom" constant="10" id="RUo-2L-avs"/>
@@ -94,5 +99,17 @@
     </objects>
     <resources>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Background Color">
+            <color red="0.12941176470588234" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Danger Color">
+            <color red="0.74901960784313726" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Title Color">
+            <color red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
