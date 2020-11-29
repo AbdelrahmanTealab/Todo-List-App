@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		B6142CF625607B9900A8B949 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6142CF425607B9900A8B949 /* ListCell.xib */; };
 		B6142CF92560B31B00A8B949 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6142CF82560B31B00A8B949 /* DetailsViewController.swift */; };
 		B6FBECC125740C5D00DF2AD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6FBECC025740C5D00DF2AD0 /* GoogleService-Info.plist */; };
+		B6FBECD425742B8100DF2AD0 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FBECD325742B8100DF2AD0 /* CreateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B6142CF425607B9900A8B949 /* ListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
 		B6142CF82560B31B00A8B949 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		B6FBECC025740C5D00DF2AD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B6FBECD325742B8100DF2AD0 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		E9396F2CA4AEC106CFC8AA9F /* Pods-Todo List App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todo List App.release.xcconfig"; path = "Target Support Files/Pods-Todo List App/Pods-Todo List App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,7 +62,6 @@
 				6C884E7E58706729A55C89E8 /* Pods-Todo List App.debug.xcconfig */,
 				E9396F2CA4AEC106CFC8AA9F /* Pods-Todo List App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -122,6 +123,7 @@
 			children = (
 				B6142CD5255E6BD300A8B949 /* ViewController.swift */,
 				B6142CF82560B31B00A8B949 /* DetailsViewController.swift */,
+				B6FBECD325742B8100DF2AD0 /* CreateViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -250,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FBECD425742B8100DF2AD0 /* CreateViewController.swift in Sources */,
 				B6142CD6255E6BD300A8B949 /* ViewController.swift in Sources */,
 				B6142CD2255E6BD300A8B949 /* AppDelegate.swift in Sources */,
 				B6142CD4255E6BD300A8B949 /* SceneDelegate.swift in Sources */,

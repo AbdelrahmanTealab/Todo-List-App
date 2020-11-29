@@ -6,6 +6,7 @@
 //  Student ID: 301164103
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -28,7 +29,8 @@ class ViewController: UIViewController {
         listTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
 }
-
+//Extensions
+    //MARK: - Table data source
 extension ViewController:UITableViewDataSource{
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //returning the number of items in the list to display it as the number of rows
@@ -47,6 +49,7 @@ extension ViewController:UITableViewDataSource{
     }
     
 }
+    //MARK: - List cell delegate
 //the below delegate is important because this is where i specify what edit button will do when pressed, i use this function from the protocol i created in ListCell.swift
 extension ViewController:ListCellDelegate{
     func completionSwitched() {
@@ -59,6 +62,7 @@ extension ViewController:ListCellDelegate{
     
 }
 
+    //MARK: - Table delegate
 extension ViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(tableView.cellForRow(at: indexPath)?.textLabel?.text as Any)

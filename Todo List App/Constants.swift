@@ -12,4 +12,6 @@ struct K{
     static let cellIdentifier = "listCell"
     static let cellNibName = "ListCell"
     static let segueName = "openDetails"
+    static let segueCreateName = "createDetails"
+    static let collectionName = "todos"
 }
