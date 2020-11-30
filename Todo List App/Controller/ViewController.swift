@@ -76,12 +76,23 @@ extension ViewController:UITableViewDataSource{
         cell.listTitle?.text = lists[indexPath.row].name
         cell.listDate?.text = lists[indexPath.row].dueDate ?? ""
         cell.editButton?.tag = indexPath.row
+        cell.switchButton?.tag = indexPath.row
         
         if lists[indexPath.row].isCompleted {
             cell.switchButton.isOn = true
+            cell.listBackground.alpha = 0.2
+            cell.listDate.alpha = 0.2
+            cell.listTitle.alpha = 0.2
+            cell.switchButton.alpha = 0.2
+            cell.editButton.alpha = 0.2
         }
         else{
             cell.switchButton.isOn = false
+            cell.listBackground.alpha = 1
+            cell.listDate.alpha = 1
+            cell.listTitle.alpha = 1
+            cell.switchButton.alpha = 1
+            cell.editButton.alpha = 1
         }
         cell.delegate = self
         return cell
@@ -91,8 +102,17 @@ extension ViewController:UITableViewDataSource{
     //MARK: - List cell delegate
 //the below delegate is important because this is where i specify what edit button will do when pressed, i use this function from the protocol i created in ListCell.swift
 extension ViewController:ListCellDelegate{
-    func completionSwitched() {
-        
+    func completionSwitched(_ sender: UISwitch) {
+        let data = lists[sender.tag]
+        db.collection(K.collectionName).document(data.name).updateData([
+            "iscompleted": sender.isOn
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
     }
     
     func editPressed(_ sender: UIButton) {

@@ -8,7 +8,7 @@
 import UIKit
 // this protocol is to be able to press the button that is inside the cell and execute its function
 protocol ListCellDelegate:AnyObject{
-    func completionSwitched()
+    func completionSwitched(_ sender: UISwitch)
     
     func editPressed(_ sender: UIButton)
 }
@@ -28,7 +28,7 @@ class ListCell: UITableViewCell {
     
     //ibaction for the edit button and switch button for later
     @IBAction func completionSwitched(_ sender: UISwitch) {
-        delegate?.completionSwitched()
+        delegate?.completionSwitched(sender)
     }
     @IBAction func editPressed(_ sender: UIButton) {
         delegate?.editPressed(sender)
