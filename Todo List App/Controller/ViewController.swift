@@ -9,16 +9,16 @@ import UIKit
 import Firebase
 
 class ViewController: UIViewController {
+    let db = Firestore.firestore()
 
     @IBOutlet weak var listTableView: UITableView!
 
     //a list of random data to test my UX/UI
     var lists:[List] = [
-        List(title: "Grocery", dueDate: Date(), items: ["banana","apple","orange"]),
-        List(title: "Games", dueDate: Date(), items: ["Red Dead","Cyberpunk","Tekken"]),
-        List(title: "Productivity", dueDate: Date(), items: ["Finish app UI","Study iOS","Study UIUX"]),
-        List(title: "Music", dueDate: Date(), items: ["Her Mannelig","In The Air Tonight","Unshaken"]),
-        List(title: "Some other list", dueDate: Date(), items: ["shave beard","trim hair","wash clothes"])
+        List(name: "Grocery", dueDate: Date().description, notes: "banana,apple,orange",isCompleted:false),
+        List(name: "Games", dueDate: Date().description, notes: "Red Dead,Cyberpunk,Tekken",isCompleted:false),
+        List(name: "Productivity", dueDate: Date().description, notes: "Finish app UI,Study iOS,Study UIUX",isCompleted:true),
+        List(name: "Music", dueDate: Date().description, notes: "Her Mannelig,In The Air Tonight,Unshaken",isCompleted:true)
     ]
 
     override func viewDidLoad() {
@@ -27,6 +27,38 @@ class ViewController: UIViewController {
         listTableView.delegate=self
         //registering my custom cell name
         listTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        loadTodos()
+    }
+    
+    func loadTodos(){
+
+        db.collection(K.collectionName)
+            .addSnapshotListener{ (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    self.lists = []
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        if let todoName = data["name"] as? String,let todoNotes = data["notes"] as? String,let todoDate = data["duedate"] as? String,let todoComplete = data["iscompleted"] as? Bool{
+                            let newList = List(name: todoName, dueDate: todoDate, notes: todoNotes, isCompleted: todoComplete)
+                            self.lists.append(newList)
+                            DispatchQueue.main.async {
+                                self.listTableView.reloadData()
+                            }
+                        }
+                    }
+                }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == K.segueName) {
+            let destinationVC = (segue.destination as! DetailsViewController)
+            destinationVC.name = (sender as! List).name
+            destinationVC.notes = (sender as! List).notes
+            destinationVC.duedate = (sender as! List).dueDate
+            destinationVC.completed = (sender as! List).isCompleted
+        }
     }
 }
 //Extensions
@@ -41,9 +73,16 @@ extension ViewController:UITableViewDataSource{
         //setting my cell as ListCell as this is my custom cell
         let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! ListCell
         //setting the title and dates of the custom cell
-        cell.listTitle?.text = lists[indexPath.row].title
-        cell.listDate?.text = lists[indexPath.row].dueDate?.description(with: Locale(identifier: "en_US"))
+        cell.listTitle?.text = lists[indexPath.row].name
+        cell.listDate?.text = lists[indexPath.row].dueDate ?? ""
+        cell.editButton?.tag = indexPath.row
         
+        if lists[indexPath.row].isCompleted {
+            cell.switchButton.isOn = true
+        }
+        else{
+            cell.switchButton.isOn = false
+        }
         cell.delegate = self
         return cell
     }
@@ -53,13 +92,13 @@ extension ViewController:UITableViewDataSource{
 //the below delegate is important because this is where i specify what edit button will do when pressed, i use this function from the protocol i created in ListCell.swift
 extension ViewController:ListCellDelegate{
     func completionSwitched() {
+        
     }
     
     func editPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: K.segueName, sender: self)
+        let data = lists[sender.tag]
+        self.performSegue(withIdentifier: K.segueName, sender: data)
     }
-    
-    
 }
 
     //MARK: - Table delegate

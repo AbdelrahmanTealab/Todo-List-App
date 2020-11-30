@@ -8,8 +8,9 @@
 import Foundation
 // this is the data structure of a list object
 struct List {
-    var title:String?
-    var dueDate:Date?
-    var items:Array<String?>? //this is assuming that i will be able to add items into the list aside from notes
+    var name:String
+    var dueDate:String?
+    var notes:String
+    var isCompleted:Bool
 }
 

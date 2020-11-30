@@ -14,4 +14,5 @@ struct K{
     static let segueName = "openDetails"
     static let segueCreateName = "createDetails"
     static let collectionName = "todos"
+    static let dateFormat = "yyyy/MMM/dd hh:mm"
 }

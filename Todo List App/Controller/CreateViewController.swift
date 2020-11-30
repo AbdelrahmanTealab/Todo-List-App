@@ -21,6 +21,16 @@ class CreateViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    @IBAction func hasDueDateSwitched(_ sender: UISwitch) {
+        if hasDueDate.isOn == true {
+            todoDatePicker.alpha = 1
+            todoDatePicker.isUserInteractionEnabled = true
+        }
+        else{
+            todoDatePicker.alpha = 0.2
+            todoDatePicker.isUserInteractionEnabled = false
+        }
+    }
     
     @IBAction func createPressed(_ sender: UIButton) {
         if todoName.text!.isEmpty || todoNotes.text.isEmpty {
@@ -34,7 +44,7 @@ class CreateViewController: UIViewController {
             let notes = todoNotes.text!
             var dueDate = ""
             if hasDueDate.isOn {
-                formatter.dateFormat = "yyyy/MMM/dd hh:mm"
+                formatter.dateFormat = K.dateFormat
                 formatter.dateStyle = .medium
                 formatter.timeStyle = .short
                 dueDate = formatter.string(from: todoDatePicker.date)

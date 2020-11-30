@@ -165,6 +165,9 @@
                                         <state key="normal" title="Update">
                                             <color key="titleColor" name="Title Color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="updatePressed:" destination="Vzv-jM-gkH" eventType="touchUpInside" id="6fL-Lt-AOm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LpK-pG-SU2">
                                         <rect key="frame" x="128" y="0.0" width="118" height="30"/>
@@ -172,6 +175,9 @@
                                         <state key="normal" title="Delete">
                                             <color key="titleColor" name="Title Color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="deletePressed:" destination="Vzv-jM-gkH" eventType="touchUpInside" id="dFM-dQ-cKs"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m10-XA-oFE">
                                         <rect key="frame" x="256" y="0.0" width="118" height="30"/>
@@ -179,6 +185,9 @@
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" name="Title Color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="Vzv-jM-gkH" eventType="touchUpInside" id="ZXI-Zd-dNK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -195,6 +204,9 @@
                                         <rect key="frame" x="325" y="0.0" width="51" height="31"/>
                                         <color key="onTintColor" name="Extra Color"/>
                                         <color key="thumbTintColor" name="Tint Color"/>
+                                        <connections>
+                                            <action selector="dueDateSwitched:" destination="Vzv-jM-gkH" eventType="valueChanged" id="IA5-rh-ubN"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
@@ -226,6 +238,13 @@
                             <constraint firstItem="RiQ-1Z-3zQ" firstAttribute="height" secondItem="nA1-Ke-MLl" secondAttribute="height" multiplier="0.247525" id="vfd-Jq-MV9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="todoComplete" destination="YEC-IM-Qag" id="EFR-EE-Qyo"/>
+                        <outlet property="todoDate" destination="gSo-zj-VMo" id="zqk-PI-1T8"/>
+                        <outlet property="todoHasDue" destination="RV3-gN-wT7" id="vao-R6-Cbe"/>
+                        <outlet property="todoName" destination="1gY-p4-9SA" id="f0Y-LG-PD4"/>
+                        <outlet property="todoNotes" destination="RiQ-1Z-3zQ" id="HmF-2J-N9Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jo8-yr-SKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -329,6 +348,9 @@
                                         <rect key="frame" x="325" y="0.0" width="51" height="31"/>
                                         <color key="onTintColor" name="Extra Color"/>
                                         <color key="thumbTintColor" name="Tint Color"/>
+                                        <connections>
+                                            <action selector="hasDueDateSwitched:" destination="DkO-7I-oPh" eventType="valueChanged" id="wbQ-zA-YPQ"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
