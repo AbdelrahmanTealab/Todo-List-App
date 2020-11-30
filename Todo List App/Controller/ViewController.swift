@@ -29,9 +29,11 @@ class ViewController: UIViewController {
         listTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         loadTodos()
     }
-    
+    //MARK: - LOAD
     func loadTodos(){
-
+        //this is where i load todos from the DB
+        //i used addSnapshotListener because it refreshed the function everytime there's an update in the DB
+        //when there's an update i call reloadData function in the main thread to avoid crashing
         db.collection(K.collectionName)
             .addSnapshotListener{ (querySnapshot, err) in
                 if let err = err {
@@ -51,6 +53,7 @@ class ViewController: UIViewController {
                 }
         }
     }
+    //prepare for segue to send my data when editing the cell or todo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == K.segueName) {
             let destinationVC = (segue.destination as! DetailsViewController)
@@ -72,12 +75,12 @@ extension ViewController:UITableViewDataSource{
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //setting my cell as ListCell as this is my custom cell
         let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! ListCell
-        //setting the title and dates of the custom cell
+        //setting the title and dates of the custom cell as well as assigning numbers to the buttons tags so i can access their data easily later
         cell.listTitle?.text = lists[indexPath.row].name
         cell.listDate?.text = lists[indexPath.row].dueDate ?? ""
         cell.editButton?.tag = indexPath.row
         cell.switchButton?.tag = indexPath.row
-        
+        //this is to grey out cells that are completed
         if lists[indexPath.row].isCompleted {
             cell.switchButton.isOn = true
             cell.listBackground.alpha = 0.2
@@ -86,6 +89,7 @@ extension ViewController:UITableViewDataSource{
             cell.switchButton.alpha = 0.2
             cell.editButton.alpha = 0.2
         }
+        //this is show cells that are not completed
         else{
             cell.switchButton.isOn = false
             cell.listBackground.alpha = 1
@@ -103,6 +107,8 @@ extension ViewController:UITableViewDataSource{
 //the below delegate is important because this is where i specify what edit button will do when pressed, i use this function from the protocol i created in ListCell.swift
 extension ViewController:ListCellDelegate{
     func completionSwitched(_ sender: UISwitch) {
+        //when switch is pressed, i gain access to it's cell's data by making use of the tag and index row above.
+        //after that i update the Todo in the DB with the value of the button whether on or off
         let data = lists[sender.tag]
         db.collection(K.collectionName).document(data.name).updateData([
             "iscompleted": sender.isOn
@@ -116,6 +122,7 @@ extension ViewController:ListCellDelegate{
     }
     
     func editPressed(_ sender: UIButton) {
+        //when edit is pressed, i perform the segue and send the data
         let data = lists[sender.tag]
         self.performSegue(withIdentifier: K.segueName, sender: data)
     }
