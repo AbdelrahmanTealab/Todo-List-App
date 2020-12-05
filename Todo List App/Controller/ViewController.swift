@@ -11,6 +11,7 @@ import Firebase
 class ViewController: UIViewController {
     let db = Firestore.firestore()
 
+    @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var listTableView: UITableView!
 
     //a list of random data to test my UX/UI
@@ -23,12 +24,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        plusButton.layer.cornerRadius = 0.5 * plusButton.bounds.size.width
+        plusButton.clipsToBounds = true
         listTableView.dataSource=self
         listTableView.delegate=self
         //registering my custom cell name
         listTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         loadTodos()
     }
+    
     //MARK: - LOAD
     func loadTodos(){
         //this is where i load todos from the DB
@@ -63,6 +67,53 @@ class ViewController: UIViewController {
             destinationVC.completed = (sender as! List).isCompleted
         }
     }
+    
+    //MARK: - Swipe actions
+    func completeAction(at indexPath: IndexPath) -> UIContextualAction {
+        let todo = lists[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: "Completed") { (action, view, completion) in
+            self.db.collection(K.collectionName).document(todo.name).updateData([
+                "iscompleted": !todo.isCompleted
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+            completion(true)
+        }
+        action.image = UIImage(systemName: "checkmark")?.withRenderingMode(.alwaysOriginal)
+            action.image?.withTintColor(.black)
+        action.backgroundColor = todo.isCompleted ? .gray : .green
+        return action
+    }
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let todo = lists[indexPath.row]
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.db.collection(K.collectionName).document(todo.name).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+            completion(true)
+        }
+        action.image = UIImage(systemName: "trash.slash")
+        action.backgroundColor = .red
+        return action
+    }
+    func editAction(at indexPath: IndexPath) -> UIContextualAction {
+        let todo = lists[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
+            self.performSegue(withIdentifier: K.segueName, sender: todo)
+            completion(true)
+        }
+        action.image = UIImage(systemName: "pencil")
+        action.backgroundColor = .blue
+        return action
+    }
 }
 //Extensions
     //MARK: - Table data source
@@ -72,60 +123,39 @@ extension ViewController:UITableViewDataSource{
         return lists.count
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = completeAction(at: indexPath)
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete,complete])
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = editAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //setting my cell as ListCell as this is my custom cell
         let cell = listTableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! ListCell
         //setting the title and dates of the custom cell as well as assigning numbers to the buttons tags so i can access their data easily later
         cell.listTitle?.text = lists[indexPath.row].name
         cell.listDate?.text = lists[indexPath.row].dueDate ?? ""
-        cell.editButton?.tag = indexPath.row
-        cell.switchButton?.tag = indexPath.row
         //this is to grey out cells that are completed
         if lists[indexPath.row].isCompleted {
-            cell.switchButton.isOn = true
             cell.listBackground.alpha = 0.2
             cell.listDate.alpha = 0.2
             cell.listTitle.alpha = 0.2
-            cell.switchButton.alpha = 0.2
-            cell.editButton.alpha = 0.2
         }
         //this is show cells that are not completed
         else{
-            cell.switchButton.isOn = false
+
             cell.listBackground.alpha = 1
             cell.listDate.alpha = 1
             cell.listTitle.alpha = 1
-            cell.switchButton.alpha = 1
-            cell.editButton.alpha = 1
         }
-        cell.delegate = self
         return cell
     }
     
-}
-    //MARK: - List cell delegate
-//the below delegate is important because this is where i specify what edit button will do when pressed, i use this function from the protocol i created in ListCell.swift
-extension ViewController:ListCellDelegate{
-    func completionSwitched(_ sender: UISwitch) {
-        //when switch is pressed, i gain access to it's cell's data by making use of the tag and index row above.
-        //after that i update the Todo in the DB with the value of the button whether on or off
-        let data = lists[sender.tag]
-        db.collection(K.collectionName).document(data.name).updateData([
-            "iscompleted": sender.isOn
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-    
-    func editPressed(_ sender: UIButton) {
-        //when edit is pressed, i perform the segue and send the data
-        let data = lists[sender.tag]
-        self.performSegue(withIdentifier: K.segueName, sender: data)
-    }
 }
 
     //MARK: - Table delegate
@@ -134,4 +164,3 @@ extension ViewController:UITableViewDelegate{
         print(tableView.cellForRow(at: indexPath)?.textLabel?.text as Any)
     }
 }
-

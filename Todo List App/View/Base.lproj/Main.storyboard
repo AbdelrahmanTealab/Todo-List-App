@@ -49,10 +49,14 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJW-j1-tGX">
-                                <rect key="frame" x="87" y="811" width="240" height="41"/>
-                                <color key="backgroundColor" name="Extra Color"/>
+                                <rect key="frame" x="304" y="782" width="50" height="50"/>
+                                <color key="backgroundColor" name="Plus Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4Ni-q2-Fsi"/>
+                                    <constraint firstAttribute="height" constant="50" id="5Iy-BY-gN5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Create a new To-Do list">
+                                <state key="normal" title="➕">
                                     <color key="titleColor" name="Title Color"/>
                                 </state>
                                 <connections>
@@ -64,15 +68,16 @@
                         <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="MO0-iz-X2g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="GI8-0Y-R4y"/>
-                            <constraint firstItem="jJW-j1-tGX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PO5-mn-rAJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jJW-j1-tGX" secondAttribute="trailing" constant="60" id="Iee-N6-BA9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jJW-j1-tGX" secondAttribute="bottom" constant="30" id="Kua-lh-31E"/>
                             <constraint firstItem="MO0-iz-X2g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PQD-Qf-0zR"/>
                             <constraint firstAttribute="bottom" secondItem="MO0-iz-X2g" secondAttribute="bottom" id="byk-2a-xxZ"/>
                             <constraint firstAttribute="trailing" secondItem="MO0-iz-X2g" secondAttribute="trailing" id="gPN-xs-faX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jJW-j1-tGX" secondAttribute="bottom" constant="10" id="k10-Ud-ML4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="listTableView" destination="MO0-iz-X2g" id="821-ve-9wM"/>
+                        <outlet property="plusButton" destination="jJW-j1-tGX" id="CTW-VE-zgh"/>
                         <segue destination="Vzv-jM-gkH" kind="presentation" identifier="openDetails" id="gJT-f3-PcJ"/>
                     </connections>
                 </viewController>
@@ -239,11 +244,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="m10-XA-oFE" id="lq9-9r-HTV"/>
+                        <outlet property="deleteButton" destination="LpK-pG-SU2" id="v85-xd-Xaa"/>
                         <outlet property="todoComplete" destination="YEC-IM-Qag" id="EFR-EE-Qyo"/>
                         <outlet property="todoDate" destination="gSo-zj-VMo" id="zqk-PI-1T8"/>
                         <outlet property="todoHasDue" destination="RV3-gN-wT7" id="vao-R6-Cbe"/>
                         <outlet property="todoName" destination="1gY-p4-9SA" id="f0Y-LG-PD4"/>
                         <outlet property="todoNotes" destination="RiQ-1Z-3zQ" id="HmF-2J-N9Y"/>
+                        <outlet property="updateButton" destination="ibr-3e-Sob" id="eHG-c0-BMI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jo8-yr-SKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -380,6 +388,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="eP8-kL-WxZ" id="izR-1z-vQz"/>
+                        <outlet property="createButton" destination="ebQ-ay-2eA" id="7IJ-zV-3uc"/>
                         <outlet property="hasDueDate" destination="W6u-iT-3Wv" id="be6-3Z-ilT"/>
                         <outlet property="todoDatePicker" destination="rvP-VB-6yV" id="1OW-EW-9fs"/>
                         <outlet property="todoName" destination="6Xo-5q-eJT" id="bID-qb-Qnf"/>
@@ -396,7 +406,10 @@
             <color red="0.1289999932050705" green="0.10999999940395355" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Extra Color">
-            <color red="0.4779999852180481" green="0.46700000762939453" blue="0.086000002920627594" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.4392156862745098" green="0.50196078431372548" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Plus Color">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Tint Color">
             <color red="0.11800000071525574" green="0.125" blue="0.32199999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -15,6 +15,11 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var todoHasDue: UISwitch!
     @IBOutlet weak var todoNotes: UITextView!
     @IBOutlet weak var todoComplete: UISwitch!
+    
+    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
     //variables recieved from ViewController
     var name:String?
     var duedate:String?
@@ -26,7 +31,14 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateButton.layer.cornerRadius = 0.1 * updateButton.bounds.size.width
+        updateButton.clipsToBounds = true
+        deleteButton.layer.cornerRadius = 0.1 * deleteButton.bounds.size.width
+        deleteButton.clipsToBounds = true
+        cancelButton.layer.cornerRadius = 0.1 * cancelButton.bounds.size.width
+        cancelButton.clipsToBounds = true
         //assigning data from ViewController to current screen
+        
         todoName.text = name ?? ""
         todoNotes.text = notes ?? ""
         todoComplete.isOn = completed ?? false

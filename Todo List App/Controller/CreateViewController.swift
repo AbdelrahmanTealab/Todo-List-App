@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 
 class CreateViewController: UIViewController {
+    @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     //outlets
     @IBOutlet weak var todoName: UITextField!
     @IBOutlet weak var todoNotes: UITextView!
@@ -21,6 +23,10 @@ class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        createButton.layer.cornerRadius = 0.1 * createButton.bounds.size.width
+        createButton.clipsToBounds = true
+        cancelButton.layer.cornerRadius = 0.1 * cancelButton.bounds.size.width
+        cancelButton.clipsToBounds = true
     }
     @IBAction func hasDueDateSwitched(_ sender: UISwitch) {
         //disabling and enabling date picker when due date is switched on or off
